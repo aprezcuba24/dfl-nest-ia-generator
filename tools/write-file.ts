@@ -3,7 +3,7 @@ import { ToolConfig } from "../types";
 
 const schema = {
   path: z.string().describe("The path to the file to write"),
-  content: z.string().describe("The content of the file to write")
+  content: z.string().describe("The content of the file to write"),
 };
 
 export const writeFileTool: ToolConfig<typeof schema> = {
@@ -19,9 +19,9 @@ Handles text content with proper encoding. Only works within allowed directories
       content: [
         {
           type: "text",
-          text: `Wrote file to ${path} with content ${content}`
-        }
-      ]
-    }
-  }
-}
+          text: `Wrote file to ${path} with content ${content}`,
+        },
+      ],
+    };
+  },
+};
