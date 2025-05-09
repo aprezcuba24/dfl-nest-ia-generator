@@ -9,3 +9,19 @@ pnpx tsx main.ts
 ```
 pnpx @modelcontextprotocol/inspector pnpx tsx main.ts
 ```
+
+## Configure in Windsurf
+```
+{
+  "mcpServers": {
+    "first": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "tsx",
+        "<project_path>/first/main.ts"
+      ]
+    }
+  }
+}
+```
