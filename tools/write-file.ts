@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ToolConfig } from "../types";
+import fs from "fs";
 
 const schema = {
   path: z.string().describe("The path to the file to write"),
@@ -12,16 +13,11 @@ export const writeFileTool: ToolConfig<typeof schema> = {
 Use with caution as it will overwrite existing files without warning. 
 Handles text content with proper encoding. Only works within allowed directories.`,
   schema: schema,
-  cb: async (args: { path: string; content: string }) => {
+  cb: (args: { path: string; content: string }) => {
     const { path, content } = args;
-    // await fs.promises.writeFile(path, content)
+    fs.writeFileSync(path, content, "utf-8");
     return {
-      content: [
-        {
-          type: "text",
-          text: `Wrote file to ${path} with content ${content}`,
-        },
-      ],
+      content: [{ type: "text", text: `Successfully wrote to ${path}` }],
     };
   },
 };
