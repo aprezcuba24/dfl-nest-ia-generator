@@ -1,6 +1,7 @@
 import { z } from "zod";
 // import generator from "./generator";
 import { ToolConfig } from "@/types";
+import prompts from "./prompts";
 
 const schema = {
   chatContent: z
@@ -24,7 +25,7 @@ export const createModuleTool: ToolConfig<typeof schema> = {
       content: [
         {
           type: "text",
-          text: `Module ${chatContent} created successfully`,
+          text: `Module ${process.env.IA_KEY} ${chatContent} created successfully ${prompts}`,
         },
       ],
     };
