@@ -1,7 +1,6 @@
 import { z } from "zod";
-// import generator from "./generator";
 import { ToolConfig } from "@/types";
-import prompts from "./prompts";
+import generator from "./generator";
 
 const schema = {
   chatContent: z
@@ -20,12 +19,26 @@ export const createModuleTool: ToolConfig<typeof schema> = {
  `,
   schema,
   cb: async ({ chatContent }: { chatContent: string }) => {
-    // await generator({ name });
+    if (!process.env.OPENAI_API_KEY) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: "Error: OPENAI_API_KEY not found",
+          },
+        ],
+      };
+    }
+    const response = await generator(chatContent);
     return {
       content: [
         {
           type: "text",
-          text: `Module ${process.env.IA_KEY} ${chatContent} created successfully ${prompts}`,
+          text: `The model was created successfully.
+It created the following files:
+
+- ${response.join("\n- ")}
+`,
         },
       ],
     };

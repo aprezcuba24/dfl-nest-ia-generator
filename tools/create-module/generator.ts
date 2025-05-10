@@ -2,12 +2,14 @@ import { generateText } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { tool } from "ai";
 import { z } from "zod";
-import { createFile } from "@/utils/create-file";
+import { createFile } from "../../utils/create-file";
+import prompts from "./prompts";
 
-const generator = async () => {
-  const { text } = await generateText({
-    model: openai("o3-mini"),
-    prompt: "Write a module for a Node.js application",
+const generator = async (chatContent: string) => {
+  const { toolCalls } = await generateText({
+    model: openai("gpt-4o"),
+    system: prompts,
+    prompt: chatContent,
     tools: {
       createFile: tool({
         description: "Create a new file",
@@ -21,7 +23,7 @@ const generator = async () => {
       }),
     },
   });
-  return text;
+  return toolCalls.map((toolCall) => toolCall.args.path);
 };
 
 export default generator;
