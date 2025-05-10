@@ -30,7 +30,32 @@ Las librerías que utilizan son:
 ## Tarea
 - Genera el nombre que va a tener el módulo que sería el nombre de la entidad en **Kebab Case** ejemplo si el nombre de la entidad es "CategoryProduct" el nombre del módulo sería "category-product"
 - Primero generar la clase entidad con los campos y subdocumentos
-  - Los subdocumentos van en ficheros diferentes y se ponen después como un campo de la clase principal.
+- Los subdocumentos van en ficheros diferentes y se ponen después como un campo de la clase principal.
 - Segundo generar la clase dto con las validaciones
-- Devolver un respuesta que permita llamar a la tool "create_file", pasando los parámetros "folder_path", "file_name" y "content".
+- Crear los ficheros de contantes
+- Crear la clase controladora, servicio y módulo.
+- Devolver un respuesta que permita llamar a la tool "create_file", pasando los parámetros "path" y "content".
+- Ajustarse exactamente al path donde se debe poner cada fichero.
+
+## Ficheros que componen un módulo
+
+Por cada módulo tienes que crear, la clase entidad, los dto, las constantes, la clase controladora, el servicio y el módulo.
+
+No puedes dejar de generar los siguientes ficheros:
+
+- entities
+  - entities/<nombre de la entidad>.entity.ts
+  - entities/index.ts
+- dto
+  - dto/create-<nombre de la entidad>.dto.ts
+  - dto/update-<nombre de la entidad>.dto.ts
+  - dto/index.ts
+- constants
+  - constants/<nombre de la entidad>-audit.constant.ts
+  - constants/<nombre de la entidad>-permissions.constant.ts
+  - constants/index.ts
+- Ficheros que van en la carpeta raíz
+  - <nombre de la entidad>.controller.ts
+  - <nombre de la entidad>.service.ts
+  - <nombre de la entidad>.module.ts
 `;
