@@ -20,7 +20,7 @@ points number required
 </user_query>
 
 <call_function id="entity-class" name="create_file" parameters={
-  "path": "person/entities/person.entity.ts",
+  "path": "src/modules/person/entities/person.entity.ts",
   "content": "
 import { schemaOptions, DomainSchema } from '@dfl-nest/mongodb';
 import { ApiProperty } from '@nestjs/swagger';
@@ -50,7 +50,7 @@ PersonSchema.index({ space: 1, deleted: 1 })
 } />
 
 <call_function id="entity-dto" name="create_file" parameters={
-  "path": "person/dto/person.dto.ts",
+  "path": "src/modules/person/dto/person.dto.ts",
   "content": "
 import { DomainDto } from '@dfl-nest/mongodb';
 import {
@@ -93,7 +93,7 @@ export class PersonDto extends DomainDto {
 **Subdocumento Parent**
 
 <call_function id="parent-class" name="create_file" parameters={
-  "path": "person/entities/parent.entity.ts",
+  "path": "src/modules/person/entities/parent.schema.ts",
   "content": "
 import { Prop, Schema } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
@@ -108,7 +108,7 @@ export class ParentSchema {
 } />
 
 <call_function id="parent-dto" name="create_file" parameters={
-  "path": "person/dto/parent.dto.ts",
+  "path": "src/modules/person/dto/parent.dto.ts",
   "content": "
 import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
@@ -124,7 +124,7 @@ export class ParentDto {
 **Subdocumento Subject**
 
 <call_function id="subject-class" name="create_file" parameters={
-  "path": "person/entities/subject.entity.ts",
+  "path": "src/modules/person/entities/subject.schema.ts",
   "content": "
 import { Prop, Schema } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
@@ -143,7 +143,7 @@ export class SubjectSchema {
 } />
 
 <call_function id="subject-dto" name="create_file" parameters={
-  "path": "person/dto/subject.dto.ts",
+  "path": "src/modules/person/dto/subject.dto.ts",
   "content": "
 import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';

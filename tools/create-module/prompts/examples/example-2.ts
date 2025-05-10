@@ -11,7 +11,7 @@ spaces array of string
 </user_query>
 
 <call_function id="entity-class" name="create_file" parameters={
-  "path": "user/entities/user.entity.ts",
+  "path": "src/modules/user/entities/user.entity.ts",
   "content": "
 import { schemaOptions, DomainSchema } from '@dfl-nest/mongodb';
 import { ApiProperty } from '@nestjs/swagger';
@@ -39,7 +39,7 @@ UserSchema.index({ space: 1, deleted: 1 })
 } />
 
 <call_function id="entity-dto" name="create_file" parameters={
-  "path": "user/dto/user.dto.ts",
+  "path": "src/modules/user/dto/user.dto.ts",
   "content": "
 import { DomainDto } from '@dfl-nest/mongodb';
 import { IsBoolean, IsNumber, IsString, IsOptional } from 'class-validator';

@@ -12,7 +12,7 @@ order number
 </user_query>
 
 <call_function id="entity-class" name="create_file" parameters={
-  "path": "category/entities/category.entity.ts",
+  "path": "src/modules/category/entities/category.entity.ts",
   "content": "
 import { schemaOptions, DomainSchema } from '@dfl-nest/mongodb';
 import { ApiProperty } from '@nestjs/swagger';
@@ -44,7 +44,7 @@ UserSchema.index({ space: 1, deleted: 1 })
 } />
 
 <call_function id="entity-dto" name="create_file" parameters={
-  "path": "category/dto/category.dto.ts",
+  "path": "src/modules/category/dto/category.dto.ts",
   "content": "
 import { DomainDto } from '@dfl-nest/mongodb';
 import { IsBoolean, IsNumber, IsString, IsOptional } from 'class-validator';

@@ -5,7 +5,7 @@ import { z } from "zod";
 import { createFile } from "../../utils/create-file";
 import prompts from "./prompts";
 
-const generator = async (chatContent: string) => {
+const generator = async (chatContent: string, rootPath: string) => {
   const { toolCalls } = await generateText({
     model: openai("gpt-4o"),
     system: prompts,
@@ -18,7 +18,7 @@ const generator = async (chatContent: string) => {
           content: z.string().describe("The content of the file to create"),
         }),
         execute: async ({ path, content }) => {
-          return createFile(path, content);
+          return createFile(`${rootPath}/${path}`, content);
         },
       }),
     },

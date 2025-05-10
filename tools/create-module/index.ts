@@ -8,6 +8,7 @@ const schema = {
     .describe(
       "The content of the chat. That it will be passed to the generator.",
     ),
+  path: z.string().describe("The path of the root folder of the project."),
 };
 
 export const createModuleTool: ToolConfig<typeof schema> = {
@@ -18,7 +19,7 @@ export const createModuleTool: ToolConfig<typeof schema> = {
   You need to pass the whole text that the user write in the chat and not modify it in any way.
  `,
   schema,
-  cb: async ({ chatContent }: { chatContent: string }) => {
+  cb: async ({ chatContent, path }: { chatContent: string; path: string }) => {
     if (!process.env.OPENAI_API_KEY) {
       return {
         content: [
@@ -29,7 +30,7 @@ export const createModuleTool: ToolConfig<typeof schema> = {
         ],
       };
     }
-    const response = await generator(chatContent);
+    const response = await generator(chatContent, path);
     return {
       content: [
         {
