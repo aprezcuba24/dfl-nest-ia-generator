@@ -1,4 +1,22 @@
+import identity from "./includes/identity";
+import instructions from "./includes/instructions";
+
 export default `
+${identity}
+
+${instructions}
+
+## Tarea
+- Genera el nombre que va a tener el módulo que sería el nombre de la entidad en **Kebab Case**
+  por ejemplo si el nombre de la entidad es "CategoryProduct" el nombre del módulo sería "category-product"
+- Crear la clase controladora.
+- Crear el servicio.
+- Crear el módulo.
+- Devolver un respuesta que permita llamar a la tool "create_file", pasando los parámetros "path" y "content".
+- Ajustarse exactamente al path donde se debe poner cada fichero.
+
+# Ejemplos
+
 # Example 1
 
 Crear un módulo para la entidad *Category*
@@ -10,106 +28,6 @@ description string optional
 isActive boolean
 order number
 </user_query>
-
-<call_function id="entity-class" name="create_file" parameters={
-  "path": "src/modules/category/entities/category.entity.ts",
-  "content": "import { schemaOptions, DomainSchema } from '@dfl-nest/mongodb';
-import { ApiProperty } from '@nestjs/swagger';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
-@Schema(schemaOptions)
-export class Category extends DomainSchema {
-  @ApiProperty()
-  @Prop()
-  name: string;
-
-  @ApiProperty()
-  @Prop({ type: String, required: false })
-  description: string;
-
-  @ApiProperty()
-  @Prop({ type: Boolean })
-  isActive: boolean;
-
-  @ApiProperty()
-  @Prop({ type: Number })
-  order: number;
-}
-
-export const UserSchema = SchemaFactory.createForClass(User);
-UserSchema.index({ createdAt: 1 })
-UserSchema.index({ space: 1, deleted: 1 })
-"
-} />
-
-<call_function id="index" name="create_file" parameters={
-  "path": "src/modules/category/entities/index.ts",
-  "content": "export * from './category.entity';"
-} />
-
-Crear las clases dto
-
-<call_function id="entity-dto" name="create_file" parameters={
-  "path": "src/modules/category/dto/create-category.dto.ts",
-  "content": "import { DomainDto } from '@dfl-nest/mongodb';
-import { IsBoolean, IsNumber, IsString, IsOptional } from 'class-validator';
-
-export class CreateCategoryDto extends DomainDto {
-  @IsString()
-  name: string;
-
-  @IsString()
-  @IsOptional()
-  description: string;
-
-  @IsBoolean()
-  isActive: boolean;
-
-  @IsNumber()
-  order: number;
-}
-" 
-} />
-
-<call_function id="update-dto" name="create_file" parameters={
-  "path": "src/modules/category/dto/update-category.dto.ts",
-  "content": "import { PartialType } from '@nestjs/swagger';
-import { CreateCategoryDto } from './';
-
-export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {}
-" 
-} />
-
-<call_function id="index-dto" name="create_file" parameters={
-  "path": "src/modules/category/dto/index.ts",
-  "content": "export * from './create-category.dto';
-export * from './update-category.dto';
-"
-} />
-
-Crear los ficheros de contantes
-
-<call_function id="audit-constants" name="create_file" parameters={
-  "path": "src/modules/category/constants/category-audit.constant.ts",
-  "content": "export const CATEGORY_AUDIT = 'CATEGORY';
-"
-} />
-
-<call_function id="permission-constants" name="create_file" parameters={
-  "path": "src/modules/category/constants/category-permissions.constant.ts",
-  "content": "export enum CATEGORY_PERMISSIONS {
-  VIEW = 'CATEGORY_VIEW',
-  WRITE = 'CATEGORY_WRITE',
-}
-"
-} />
-
-<call_function id="index-constants" name="create_file" parameters={
-  "path": "src/modules/category/constants/index.ts",
-  "content": "export * from './category-audit.constant';
-export * from './category-permissions.constant';
-"
-} />
 
 Crear la clase controladora
 
