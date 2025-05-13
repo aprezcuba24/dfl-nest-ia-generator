@@ -1,4 +1,4 @@
-import identity from "../prompts/identity";
+import identity from "./includes/identity";
 import instructions from "./includes/instructions";
 
 export default `

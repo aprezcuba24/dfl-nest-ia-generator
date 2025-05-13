@@ -4,7 +4,7 @@ import { tool } from "ai";
 import { z } from "zod";
 import { createFile } from "../../utils/create-file";
 import parts from "./parts";
-import { Settings } from "@/utils/settings";
+import { Settings } from "../../utils/settings";
 
 const generatePart = async (
   system: string,
