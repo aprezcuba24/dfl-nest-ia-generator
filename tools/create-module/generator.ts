@@ -4,6 +4,7 @@ import { tool } from "ai";
 import { z } from "zod";
 import { createFile } from "../../utils/create-file";
 import parts from "./parts";
+import { Settings } from "@/utils/settings";
 
 const generatePart = async (
   system: string,
@@ -11,7 +12,7 @@ const generatePart = async (
   rootPath: string,
 ) => {
   const { toolCalls } = await generateText({
-    model: openai("gpt-4o"),
+    model: openai(Settings.IA_MODEL),
     system,
     prompt: chatContent,
     tools: {
