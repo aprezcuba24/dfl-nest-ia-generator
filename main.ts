@@ -3,7 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import tools from "./tools";
 
 const server = new McpServer({
-  name: "first",
+  name: "dfl-nest-ia-generator",
   version: "1.0.0",
 });
 
