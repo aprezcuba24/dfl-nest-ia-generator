@@ -3,12 +3,16 @@ import { openai } from "@ai-sdk/openai";
 import { tool } from "ai";
 import { z } from "zod";
 import { createFile } from "../../utils/create-file";
-import prompts from "./prompts";
+import parts from "./parts";
 
-const generator = async (chatContent: string, rootPath: string) => {
+const generatePart = async (
+  system: string,
+  chatContent: string,
+  rootPath: string,
+) => {
   const { toolCalls } = await generateText({
     model: openai("gpt-4o"),
-    system: prompts,
+    system,
     prompt: chatContent,
     tools: {
       createFile: tool({
@@ -24,6 +28,13 @@ const generator = async (chatContent: string, rootPath: string) => {
     },
   });
   return toolCalls.map((toolCall) => toolCall.args.path);
+};
+
+const generator = async (chatContent: string, rootPath: string) => {
+  const files = await Promise.all(
+    parts.map((part) => generatePart(part, chatContent, rootPath)),
+  );
+  return files.flat();
 };
 
 export default generator;
