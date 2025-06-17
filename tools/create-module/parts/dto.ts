@@ -82,12 +82,14 @@ class User
 name string
 age number default 10
 spaces array of string
+role enum (admin, user) required
 </user_query>
 
 <call_function id="entity-dto" name="create_file" parameters={
   "path": "src/modules/user/dto/create-user.dto.ts",
   "content": "import { DomainDto } from '@dfl-nest/mongodb';
-import { IsBoolean, IsNumber, IsString, IsOptional } from 'class-validator';
+import { IsBoolean, IsNumber, IsString, IsOptional, IsArray, IsEnum } from 'class-validator';
+import { Role } from '../constants';
 
 export class CreateUserDto extends DomainDto {
   @IsString()
@@ -101,6 +103,9 @@ export class CreateUserDto extends DomainDto {
   @IsString({ each: true })
   @IsOptional()
   spaces: string[];
+
+  @IsEnum(Role)
+  role: Role;
 }
 " 
 } />

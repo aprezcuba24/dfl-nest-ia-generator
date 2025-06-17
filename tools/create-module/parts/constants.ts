@@ -20,11 +20,12 @@ ${instructions}
 Crear un módulo para la entidad *Category*
 
 <user_query>
-Class Category
+class Category
 name string
 description string optional
 isActive boolean
 order number
+role enum (admin, user) required
 </user_query>
 
 Crear los ficheros de contantes
@@ -44,10 +45,20 @@ Crear los ficheros de contantes
 "
 } />
 
+<call_function id="role-constants" name="create_file" parameters={
+  "path": "src/modules/category/constants/role.ts",
+  "content": "export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+"
+} />
+
 <call_function id="index-constants" name="create_file" parameters={
   "path": "src/modules/category/constants/index.ts",
   "content": "export * from './category-audit.constant';
 export * from './category-permissions.constant';
+export * from './role';
 "
 } />
 `;

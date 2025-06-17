@@ -81,6 +81,7 @@ class User
 name string
 age number default 10
 spaces array of string
+role enum (admin, user) required
 </user_query>
 
 <call_function id="entity-class" name="create_file" parameters={
@@ -88,6 +89,7 @@ spaces array of string
   "content": "import { schemaOptions, DomainSchema } from '@dfl-nest/mongodb';
 import { ApiProperty } from '@nestjs/swagger';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Role } from '../constants';
 
 @Schema(schemaOptions)
 export class User extends DomainSchema {
@@ -102,6 +104,10 @@ export class User extends DomainSchema {
   @ApiProperty()
   @Prop({ type: [String] })
   spaces: string[];
+
+  @ApiProperty()
+  @Prop({ enum: Role, required: true })
+  role: Role;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
